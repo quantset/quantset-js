@@ -1,23 +1,29 @@
-# `@quantset/mcp` — Turn Claude, Cursor & Codex Into an AI Hedge Fund & SEC Research Desk
+# `@quantset/mcp` — Put the Global Stock Market Inside Claude, Cursor & Codex
 
-**Give your AI assistant direct access to primary-source SEC EDGAR XBRL filings, 67 global equity markets, 4,899 ETF look-throughs, Wall Street consensus estimates, and live U.S. Treasury curves.**
+Financial statements for **36,000+ companies**, **127M+ facts from SEC filings back to 2000**, **4,899 ETFs you can look through (`175,000+` fund holdings mapped to tickers)**, consensus estimates, 40-factor stock screening, 734 crypto pairs, 42 FX currencies, U.S. Treasury/FRED macro curves, and prices across **67 countries**—in one MCP server for **Claude, Claude Code, Cursor, ChatGPT, Codex, Windsurf, VS Code, Hermes, and OpenClaw**.
 
-**[QuantSet](https://quantset.dev)** turns **Claude Desktop**, **Claude Code**, **Cursor**, **Windsurf**, **VS Code**, **OpenClaw**, and **ChatGPT / Codex** into a live institutional equity research & quantitative analytics desk: **90,000+ global stocks across 67 countries** (64 years of survivorship-checked US history back to **1962**; S&P 500 to **1927**), **127M+ reconciled SEC EDGAR XBRL facts (`10-K`, discrete quarterly `10-Q`, `Form 13F`, `Form 4` w/ Rule 10b5-1 insider flags, segments & debt walls)**, **4,899 ETF look-through holdings (`175k+` N-PORT constituents)**, **Wall Street consensus estimates & price targets**, a **40+ factor point-in-time stock screener**, **734 crypto pairs**, **42 FX currencies**, and **live U.S. Treasury / TIPS / FRED macroeconomic curves**.
-
-- **Works in 10 seconds with zero signup** via the built-in `mw_demo` sandbox key (or run `npx quantset init` to connect your entire computer and AI tools in one command).
-- **Add the 7 Buyside Workflow Skills (`npx skills add quantset/skills`):** Run Goldman-grade 5-year DCFs & Reverse-DCFs (`dcf-valuation`), 7-peer Trading Comps Football Fields (`comps-analysis`), printable 1-page HTML Buyside Memos (`investment-memo`), 7-point Short-Seller Forensic Audits (`forensic-red-flags`), Earnings Playbooks (`earnings-playbook`), and 4,899-ETF Portfolio Overlap X-Rays (`portfolio-xray`).
-- **Institutional data hygiene:** True discrete quarterly cash flows (`period_basis: "discrete_quarter"`, never YTD 10-Q traps), 3-way split/dividend cross-checked `adj_close`, SEC accession & filing-date citations (`available_at`), explicit quote currencies (`GBp` pence vs. `GBP`), and strict `null` for unreported lines (never fake `0`s).
+An agent is only as good as the numbers it reads. Give yours every market, every filing, and every fund—checked before it ships.
 
 ---
 
-## 1. Fastest Setup — Connect All Your AI Tools in One Command
+## 1. Fastest Setup — One Command
 
 ```sh
 npx quantset init
 npx skills add quantset/skills
 ```
 
-Or paste directly into `claude_desktop_config.json` / `.cursor/mcp.json` (Node.js 20+):
+- **`npx quantset init`** approves your computer in the browser, configures the QuantSet MCP server in the AI tools it finds, saves `QUANTSET_API_KEY` to `.env`, and verifies a first call.
+- **`npx skills add quantset/skills`** installs the 7 research skills (`dcf-valuation`, `comps-analysis`, `investment-memo`, `earnings-playbook`, `forensic-red-flags`, `portfolio-xray`, `quantset`).
+
+## 2. Remote Streamable HTTP or Local Stdio (`npx`)
+
+```sh
+claude mcp add --transport http quantset https://api.quantset.dev/mcp \
+  --header "Authorization: Bearer mw_demo"
+```
+
+Or in `claude_desktop_config.json` / `.cursor/mcp.json`:
 
 ```json
 {
@@ -33,60 +39,45 @@ Or paste directly into `claude_desktop_config.json` / `.cursor/mcp.json` (Node.j
 }
 ```
 
-Swap `"mw_demo"` for your key from **[quantset.dev](https://quantset.dev/pricing)** (or let your agent mint a key with **30 free full-catalog trial credits** right inside chat!) to unlock all **90,000+ global symbols** and full-universe stock screening.
-
-## 2. Zero-Install Remote HTTP (Claude Code, VS Code, Claude.ai & ChatGPT)
-
-```sh
-claude mcp add --transport http quantset https://api.quantset.dev/mcp \
-  --header "Authorization: Bearer mw_demo"
-```
-
-In **Claude.ai** or **ChatGPT** web connectors, enter `https://api.quantset.dev/mcp` and click **Connect** (supports 1-click OAuth 2.1).
+In **Claude.ai** or **ChatGPT** web connectors, add `https://api.quantset.dev/mcp` and connect via 1-click OAuth 2.1.
 
 ---
 
-## What Your Agent Can Do Immediately
+## Checked Before It Reaches Your Agent
 
-- **Buyside DCF & Reverse-DCF:** *"Run a 5-year DCF valuation and Reverse-DCF on NVIDIA (`us:NVDA`) using live 10Y Treasury yields and SBC-adjusted Owner FCF."*
-- **Trading Comps Table:** *"Build a peer trading comps table for `us:NVDA` (`EV/Revenue`, `EV/EBITDA`, `EV/FCF`, `Forward P/E`, `ROIC`, `FCF Margin`) with 25th/Median/75th percentiles."*
-- **Short-Seller Forensic Audit:** *"Audit `us:AAPL` for cash-conversion divergence, SBC dilution, 24-month debt maturity walls, segment margin decay, and unscheduled Form 4 C-suite insider selling vs. Rule 10b5-1."*
-- **Portfolio & 4,899-ETF Overlap X-Ray:** *"Compare `us:NVDA`, `us:AAPL`, `global:SHEL.L`, and `crypto:BTCUSDT` USD correlations, max drawdowns, and show which ETFs have the largest portfolio weight in `NVDA`."*
-- **40-Factor Point-in-Time Stock Screening:** *"Screen US stocks with ROIC > 20%, EV/FCF < 25, positive YoY revenue growth, and shrinking share count over the past year."*
+1. **Filings you can cite:** US statements reconcile to SEC XBRL filings and carry `form`, `accession`, `available_at` (public filing date), and a `citation_url` highlighting the exact sentence on `sec.gov`.
+2. **Null means null, never zero:** When a company does not report a line, you get `null`—never a silent `0` that bends a margin or an average.
+3. **Adjustments with evidence:** Adjusted closes pass a three-way check against raw closes, split continuity, and verified cash dividends (`status: "evidence-verified"`).
+4. **True quarters and native units:** Quarterly cash flows are separated from fiscal year-to-date figures (`period_basis: "discrete_quarter"`), and every price states its currency, pence (`GBp`) included.
+5. **Snapshots that hold still:** Every response is pinned to `X-Warehouse-Snapshot-Id` so multi-page reads never shift mid-conversation.
 
 ---
 
-## Read-Only Institutional Tools Included
+## Read-Only Tools Included
 
-| Tool | What Your Agent Gets |
+| Tool | What Your Agent Reads |
 | --- | --- |
-| `get_quotes` | Batch quotes across US equities, 67 international exchanges & 734 crypto pairs |
-| `get_price_history` | Up to 64 years of daily OHLCV + verified split/dividend `adj_close` & market cap |
-| `get_intraday_bars` | Cross-checked hourly bars & live session candles |
-| `screen_stocks` / `search_screener` | 40+ factor screener & arbitrary statement/ratio DSL filters (`ROIC`, `EV/EBITDA`, `EV/FCF`, `FFO`, `SMA-200`, buybacks) |
-| `get_company_snapshot` | Full valuation, quality, momentum snapshot + sector/SIC metrics |
+| `get_quotes` | Latest quotes across US equities, 67 international markets & 734 crypto pairs |
+| `get_price_history` | Up to 64 years of daily OHLCV + evidence-verified `adj_close` & market cap |
+| `get_intraday_bars` | Hourly 60-minute US bars cross-checked against daily closes |
+| `screen_stocks` / `search_screener` | 40+ factor screener & statement/ratio DSL filters (`ROIC`, `EV/EBITDA`, `EV/FCF`, `FFO`, `SMA-200`, buybacks) |
+| `get_company_snapshot` | Current valuation, profitability, growth, and technical metrics |
 | `get_financial_metrics` | Historical valuation, profitability, efficiency, liquidity & leverage ratios |
-| `get_estimates_and_earnings` | Forward Wall Street EPS/revenue consensus, price targets, analyst ratings & earnings surprises |
-| `get_etf_data` | 4,899 ETF profiles, 175k+ N-PORT holdings & reverse stock-to-ETF exposure (`etf-exposures`) |
-| `get_macro_and_fx` | 1M–30Y U.S. Treasury curves, TIPS real yields, CPI/Labor/GDP packs, central bank policy rates & 42 FX currencies |
-| `get_corporate_actions` | Forward/reverse splits, verified cash dividends & shareholder returns |
-| `get_financial_statements` | Reconciled SEC XBRL `income`, `balance_sheet` & discrete quarterly `cash_flow` (`as_of` point-in-time supported) |
-| `get_sec_filings` | Product/geo revenue segments, debt maturity walls, Form 4 insider trades (Rule 10b5-1 flags), Form 13F whales & raw XBRL facts |
-| `list_instruments` / `get_peers` | Instant search & SIC/sector peer discovery across 90,000+ global listings |
-| `get_capabilities` / `get_market_status` | Dataset coverage, sector taxonomies, and live exchange session status |
+| `get_financial_statements` | Reconciled `income`, `balance_sheet` & discrete quarterly `cash_flow` (`as_of` point-in-time supported) |
+| `get_fundamentals` | Standardized multi-company revenue, EPS, and reported growth |
+| `get_estimates_and_earnings` | Forward consensus EPS/revenue, analyst ratings, earnings surprises & earnings calendar |
+| `get_sec_filings` | Revenue segments, debt maturities, Form 4 insider trades (Rule 10b5-1 flags), Form 13F institutional holdings & raw XBRL facts |
+| `get_etf_data` | 4,899 ETF profiles, `175,000+` Form N-PORT holdings & reverse stock-to-ETF exposure (`etf-exposures`) |
+| `get_macro_and_fx` | 1M–30Y U.S. Treasury curves, TIPS real yields, CPI/Labor/GDP packs, central bank policy rates, 82 FRED series & 42 FX currencies |
+| `get_corporate_actions` | Dividends, splits, shareholder returns & exchange actions |
+| `list_instruments` / `get_peers` | Search 90,000+ listings by name, ticker, country, or sector and find comparable peers |
+| `get_capabilities` / `get_market_status` | Dataset coverage, sector taxonomies & live exchange trading hours |
 
----
-
-## Technical Guides & Links
+## Links
 
 - **Homepage & Pricing:** [https://quantset.dev](https://quantset.dev)
-- **Financial Data MCP Server Guide:** [https://quantset.dev/docs/guides/financial-data-mcp-server](https://quantset.dev/docs/guides/financial-data-mcp-server)
-- **AI Agents & MCP Setup:** [https://quantset.dev/docs/agents](https://quantset.dev/docs/agents)
-- **Interactive API Reference (45+ Endpoints):** [https://quantset.dev/docs/api](https://quantset.dev/docs/api)
-- **SEC EDGAR & XBRL Financial Statements API:** [https://quantset.dev/docs/guides/sec-edgar-xbrl-api](https://quantset.dev/docs/guides/sec-edgar-xbrl-api)
-- **Form 13F Institutional Holdings & Form 4 Insiders API:** [https://quantset.dev/docs/guides/13f-insider-float-api](https://quantset.dev/docs/guides/13f-insider-float-api)
-- **Analyst Consensus Estimates & Price Targets API:** [https://quantset.dev/docs/guides/analyst-estimates-upgrades-api](https://quantset.dev/docs/guides/analyst-estimates-upgrades-api)
-- **ETF Holdings (4,899 Funds) & U.S. Treasury Yield Curve API:** [https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api](https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api)
-- **Global Stock Data API (67 Countries):** [https://quantset.dev/docs/global-markets](https://quantset.dev/docs/global-markets)
-- **7 Buyside Workflow Skills:** [https://github.com/quantset/skills](https://github.com/quantset/skills)
-- **Full Agent Contract (`llms.txt`):** [https://api.quantset.dev/llms.txt](https://api.quantset.dev/llms.txt)
+- **AI Agents & MCP Guide:** [https://quantset.dev/docs/agents](https://quantset.dev/docs/agents)
+- **All Endpoints:** [https://quantset.dev/docs/api](https://quantset.dev/docs/api)
+- **How We Verify Data:** [https://quantset.dev/docs/data-quality](https://quantset.dev/docs/data-quality)
+- **7 Research Skills (`quantset/skills`):** [https://github.com/quantset/skills](https://github.com/quantset/skills)
+- **Full LLM Contract (`llms.txt`):** [https://api.quantset.dev/llms.txt](https://api.quantset.dev/llms.txt)

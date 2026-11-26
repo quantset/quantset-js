@@ -1,7 +1,7 @@
 {
   "name": "quantset",
-  "version": "0.1.3",
-  "description": "QuantSet (https://quantset.dev) — Institutional market data API for AI trading platforms, AI hedge funds, Next.js market terminals & financial agents: 90,000+ global stocks (67 countries, 64yr history), reconciled SEC EDGAR XBRL financials (10-K, 10-Q, 13F, Form 4), 4,899 ETF look-throughs, Wall Street consensus estimates, 40-factor screener, crypto, FX & macro curves.",
+  "version": "0.1.4",
+  "description": "Put the global stock market inside your agents and code (https://quantset.dev) — Financial statements for 36,000+ companies, 127M+ facts from SEC filings back to 2000, 4,899 ETFs you can look through, consensus estimates, 40-factor screening, and prices across 67 countries.",
   "license": "MIT",
   "type": "module",
   "exports": {".": {"types": "./dist/index.d.ts", "import": "./dist/index.js"}},

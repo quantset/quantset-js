@@ -77,9 +77,16 @@ In **Claude.ai** or **ChatGPT** web connectors, enter `https://api.quantset.dev/
 
 ---
 
-## Links
+## Technical Guides & Links
 
-- **Live MCP & Agent Setup Guide:** [quantset.dev/docs/agents](https://quantset.dev/docs/agents)
-- **7 Buyside Workflow Skills:** [github.com/quantset/skills](https://github.com/quantset/skills)
-- **Full Agent Contract (`llms.txt`):** [api.quantset.dev/llms.txt](https://api.quantset.dev/llms.txt)
-- **Plans & API Keys:** [quantset.dev/pricing](https://quantset.dev/pricing)
+- **Homepage & Pricing:** [https://quantset.dev](https://quantset.dev)
+- **Financial Data MCP Server Guide:** [https://quantset.dev/docs/guides/financial-data-mcp-server](https://quantset.dev/docs/guides/financial-data-mcp-server)
+- **AI Agents & MCP Setup:** [https://quantset.dev/docs/agents](https://quantset.dev/docs/agents)
+- **Interactive API Reference (45+ Endpoints):** [https://quantset.dev/docs/api](https://quantset.dev/docs/api)
+- **SEC EDGAR & XBRL Financial Statements API:** [https://quantset.dev/docs/guides/sec-edgar-xbrl-api](https://quantset.dev/docs/guides/sec-edgar-xbrl-api)
+- **Form 13F Institutional Holdings & Form 4 Insiders API:** [https://quantset.dev/docs/guides/13f-insider-float-api](https://quantset.dev/docs/guides/13f-insider-float-api)
+- **Analyst Consensus Estimates & Price Targets API:** [https://quantset.dev/docs/guides/analyst-estimates-upgrades-api](https://quantset.dev/docs/guides/analyst-estimates-upgrades-api)
+- **ETF Holdings (4,899 Funds) & U.S. Treasury Yield Curve API:** [https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api](https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api)
+- **Global Stock Data API (67 Countries):** [https://quantset.dev/docs/global-markets](https://quantset.dev/docs/global-markets)
+- **7 Buyside Workflow Skills:** [https://github.com/quantset/skills](https://github.com/quantset/skills)
+- **Full Agent Contract (`llms.txt`):** [https://api.quantset.dev/llms.txt](https://api.quantset.dev/llms.txt)

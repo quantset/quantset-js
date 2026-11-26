@@ -104,9 +104,17 @@ for await (const page of qs.paginate("screener", { min_roic: 20, max_pe_ttm: 30,
 - `priceHistory("NVDA", { start: "2020-01-01", limit: 500, maxPages: 10 })` assembles oldest-first ascending history pinned to a single immutable `snapshot_id`.
 - HTTP errors throw `QuantsetError` with `err.code`, `err.detail`, `err.field`, `err.candidates`, `err.response.status`, and `err.retryAfter`.
 
-## Links
+## Technical Guides & Links
 
-- **Website & Pricing:** [quantset.dev](https://quantset.dev)
-- **Interactive API Reference:** [quantset.dev/docs/api](https://quantset.dev/docs/api)
-- **7 Buyside Skills for Claude Code & Cursor:** [github.com/quantset/skills](https://github.com/quantset/skills)
-- **Full LLM Contract (`llms-full.txt`):** [api.quantset.dev/llms-full.txt](https://api.quantset.dev/llms-full.txt)
+- **Homepage & Pricing:** [https://quantset.dev](https://quantset.dev)
+- **Interactive API Reference (45+ Endpoints):** [https://quantset.dev/docs/api](https://quantset.dev/docs/api)
+- **SEC EDGAR & XBRL Financial Statements API:** [https://quantset.dev/docs/guides/sec-edgar-xbrl-api](https://quantset.dev/docs/guides/sec-edgar-xbrl-api)
+- **Form 13F Institutional Holdings & Form 4 Insiders API:** [https://quantset.dev/docs/guides/13f-insider-float-api](https://quantset.dev/docs/guides/13f-insider-float-api)
+- **Analyst Consensus Estimates & Price Targets API:** [https://quantset.dev/docs/guides/analyst-estimates-upgrades-api](https://quantset.dev/docs/guides/analyst-estimates-upgrades-api)
+- **ETF Holdings (4,899 Funds) & U.S. Treasury Yield Curve API:** [https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api](https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api)
+- **Adjusted Close, Splits & Dividends Verification:** [https://quantset.dev/docs/guides/adjusted-close-splits-api](https://quantset.dev/docs/guides/adjusted-close-splits-api)
+- **Global Stock Data API (67 Countries):** [https://quantset.dev/docs/global-markets](https://quantset.dev/docs/global-markets)
+- **Switch from `yfinance` / Yahoo Finance:** [https://quantset.dev/docs/switch/yfinance](https://quantset.dev/docs/switch/yfinance)
+- **Switch from Financial Modeling Prep (FMP):** [https://quantset.dev/docs/switch/fmp](https://quantset.dev/docs/switch/fmp)
+- **7 Buyside Skills for Claude Code & Cursor:** [https://github.com/quantset/skills](https://github.com/quantset/skills)
+- **Full LLM Contract (`llms-full.txt`):** [https://api.quantset.dev/llms-full.txt](https://api.quantset.dev/llms-full.txt)

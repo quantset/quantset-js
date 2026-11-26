@@ -1,7 +1,7 @@
 {
   "name": "@quantset/mcp",
   "mcpName": "dev.quantset/quantset",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Put the global stock market inside Claude, Cursor & Codex (https://quantset.dev) — Financial statements for 36,000+ companies, 127M+ facts from SEC filings back to 2000, 4,899 ETFs you can look through, consensus estimates, 40-factor screening, and prices across 67 countries.",
   "license": "MIT",
   "type": "module",

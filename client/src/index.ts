@@ -16,9 +16,6 @@ export interface CreditReceipt {
 export interface BilledResponse<T> { data: T; receipt: CreditReceipt }
 export type BillingUnit = "request" | "selector" | "bars" | "periods" | "screen" | "rows";
 export interface RateRule { unit: BillingUnit; base: number; block_size: number; increment: number; included_units: number; rounding: "ceil" | "floor" }
-export interface CreditEstimate {
-  operation: string; rate_card_version: string; maximum_credits: number; exact: boolean; units: { selectors: number; records?: number; period_counts?: number[] };
-}
 type CreditLimit = { maxCredits?: number; workflowId?: string };
 function creditLimit(n: number | undefined) {
   if (n !== undefined && (!Number.isSafeInteger(n) || n < 0 || n >= 1e12)) throw new RangeError("Credit limits must be integers between 0 and 999999999999");
@@ -123,10 +120,6 @@ export class Quantset {
 
   rateCard() {
     return this.get<{ rate_card_version: string; rules: Record<string, RateRule> }>("billing/rate-card");
-  }
-
-  estimateCreditCost(method: "GET" | "POST" | "DELETE", path: string, inputs: { params?: Query; body?: object } = {}) {
-    return this.post<CreditEstimate>("billing/estimate", { method, path: "/" + path.replace(/^\/api\/v1\/|^\//, ""), ...inputs });
   }
 
   private async request<T>(method: "GET" | "POST", path: string, params: Query, body: object | undefined,

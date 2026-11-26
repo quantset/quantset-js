@@ -135,20 +135,17 @@ test("structured projections use a POST with JSON arrays", async (t) => {
   assert.deepEqual(JSON.parse(init.body), body);
 });
 
-test("estimates and credit ceilings use typed receipt metadata", async (t) => {
+test("credit ceilings use typed receipt metadata", async (t) => {
   let n = 0;
   t.mock.method(globalThis, "fetch", async (url, options) => {
-    if (++n === 1) {
-      assert.equal(url.pathname, "/api/v1/billing/estimate");
-      assert.deepEqual(JSON.parse(options.body), { method: "GET", path: "/prices", params: { ticker: "NVDA", limit: 251 } });
-      return Response.json({ maximum_credits: 2 });
-    }
+    n++;
+    assert.equal(url.pathname, "/api/v1/prices");
     assert.equal(options.headers.get("X-Max-Credits"), "2");
     return Response.json({ data: [] }, { headers: { "X-Credit-Cost": "1", "X-Credits-Remaining": "99",
       "X-Rate-Card-Version": "test", "X-Request-Id": "rq_1" } });
   });
   const qs = new Quantset("demo", "https://api.quantset.dev", { maxCreditsPerRequest: 5 });
-  assert.equal((await qs.estimateCreditCost("GET", "/prices", { params: { ticker: "NVDA", limit: 251 } })).maximum_credits, 2);
+  assert.equal(qs.estimateCreditCost, undefined);
   const { data, receipt } = await qs.getWithReceipt("prices", { ticker: "NVDA", limit: 251 }, { maxCredits: 2 });
   assert.deepEqual(data, { data: [] });
   assert.deepEqual(receipt, { credit_cost: 1, credits_remaining: 99, rate_card_version: "test", request_id: "rq_1" });

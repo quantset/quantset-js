@@ -1,8 +1,8 @@
 {
   "name": "@quantset/mcp",
   "mcpName": "dev.quantset/quantset",
-  "version": "0.1.0",
-  "description": "Give Claude, Cursor, Windsurf & Codex live market superpowers: 52,000+ global stocks (67 countries, 64yr history), 734 crypto pairs, 40-factor stock screener, consensus estimates, ETF look-through, correlations, macro curves & financials.",
+  "version": "0.1.1",
+  "description": "Turn Claude, Cursor, Windsurf & Codex into an AI hedge fund & SEC research desk: 90,000+ global stocks (67 countries, 64yr history), 127M+ SEC EDGAR XBRL facts, 4,899 ETF look-throughs, Wall Street consensus estimates, 40-factor screener, crypto, FX & macro curves.",
   "license": "MIT",
   "type": "module",
   "bin": {"quantset-mcp": "cli.js"},

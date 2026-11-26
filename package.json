@@ -1,0 +1,6 @@
+{
+  "name": "quantset-packages",
+  "private": true,
+  "workspaces": ["client", "mcp"],
+  "scripts": {"build": "npm run build -w quantset", "test": "npm run build && tsc --noEmit --strict --target ES2022 --module NodeNext test/client-types.mts && node --test test/*.test.mjs"}
+}

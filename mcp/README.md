@@ -1,6 +1,6 @@
 # `@quantset/mcp` — Put the Global Stock Market Inside Claude, Cursor & Codex
 
-Financial statements for **36,000+ companies**, **127M+ facts from SEC filings back to 2000**, **4,899 ETFs you can look through (`175,000+` fund holdings mapped to tickers)**, consensus estimates, 40-factor stock screening, 734 crypto pairs, 42 FX currencies, U.S. Treasury/FRED macro curves, and prices across **67 countries**—in one MCP server for **Claude, Claude Code, Cursor, ChatGPT, Codex, Windsurf, VS Code, Hermes, and OpenClaw**.
+**`90,000+` symbols** and **`52,000+` stocks across `67` countries** (US daily history back to **1962**; S&P 500 to **1927**), **`734` crypto pairs**, **`42` FX currencies**, **`36,000+` companies with standardized financial statements**, **`127M+` facts from SEC filings back to 2000**, **`4,899` ETFs you can look through (`175,000+` fund holdings mapped to tickers)**, Wall Street consensus estimates, 40-factor stock screening, and U.S. Treasury/FRED macro curves—in one MCP server for **Claude, Claude Code, Cursor, ChatGPT, Codex, Windsurf, VS Code, Hermes, and OpenClaw**.
 
 An agent is only as good as the numbers it reads. Give yours every market, every filing, and every fund—checked before it ships.
 
@@ -47,7 +47,7 @@ The default key `mw_demo` works immediately with **no signup** across 9 sample l
 - *"Using QuantSet, compare NVIDIA's and Apple's revenue and operating margin over the last four fiscal years."*
 - *"Using QuantSet, which ETFs have the largest portfolio weight in NVDA?"*
 
-When you want to query any other listing across all 67 markets, run `npx quantset init` or sign in at **[quantset.dev/signup](https://quantset.dev/signup)** to claim a personal key with free trial credits.
+When you want to query any other listing across all 67 markets, run `npx quantset init` or sign in at **[quantset.dev/signup](https://quantset.dev/signup)** to get **250 free credits** (~10 full DCF valuations or 250 stock/price reads) with no credit card required.
 
 ---
 
@@ -78,6 +78,7 @@ When you want to query any other listing across all 67 markets, run `npx quantse
 | `get_etf_data` | 4,899 ETF profiles, `175,000+` Form N-PORT holdings & reverse stock-to-ETF exposure (`etf-exposures`) |
 | `get_macro_and_fx` | 1M–30Y U.S. Treasury curves, TIPS real yields, CPI/Labor/GDP packs, central bank policy rates, 82 FRED series & 42 FX currencies |
 | `get_corporate_actions` | Dividends, splits, shareholder returns & exchange actions |
+| `submit_feedback` | Free feedback tool for reporting missing fields, ticker requests, or data questions |
 | `list_instruments` / `get_peers` | Search 90,000+ listings by name, ticker, country, or sector and find comparable peers |
 | `get_capabilities` / `get_market_status` | Dataset coverage, sector taxonomies & live exchange trading hours |
 

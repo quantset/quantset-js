@@ -7,4 +7,4 @@ Official TypeScript SDK and Model Context Protocol (MCP) server for **[QuantSet]
 | **[`@quantset/mcp`](mcp/README.md)** | `npx -y @quantset/mcp` | Giving Claude Desktop, Claude Code, Cursor & Codex live market superpowers |
 | **[`quantset`](client/README.md)** | `npm install quantset` | Next.js dashboards, fintech backends, screeners & Node/Bun/Edge scripts |
 
-Both packages run **immediately with zero signup** via the built-in `mw_demo` sandbox key. Unlock all 52,000+ symbols at **[quantset.dev/pricing](https://quantset.dev/pricing)**.
+Both packages run **immediately with zero signup** via the built-in `mw_demo` sandbox key (US, London, Tokyo, Mumbai, ETF, S&P 500, and Crypto sample tickers), and include **250 free credits** across the full 90,000+ symbol warehouse when you run `npx quantset init` or sign in at **[quantset.dev/signup](https://quantset.dev/signup)** (no credit card required).

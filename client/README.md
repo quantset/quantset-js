@@ -1,12 +1,12 @@
 # QuantSet — Build AI Trading Platforms, Next.js Market Dashboards & Financial Agents in TypeScript / JS
 
-**Ship autonomous AI financial agents, Next.js stock research terminals, portfolio trackers, and quantitative screeners—without broken `yfinance` scrapers, rate-limited free tiers, or juggling six separate APIs.**
+**Ship autonomous AI financial agents, Next.js stock research terminals, portfolio trackers, and quantitative screeners on one institutional market data contract.**
 
 **[QuantSet](https://quantset.dev)** delivers **90,000+ global stocks across 67 countries** (64 years of survivorship-checked US daily OHLCV back to **1962**; S&P 500 to **1927**), **127M+ reconciled SEC EDGAR XBRL facts (`10-K`, discrete quarterly `10-Q`, `Form 13F`, `Form 4` w/ Rule 10b5-1 insider flags, segments & debt walls)**, **4,899 ETF look-through holdings (`175k+` N-PORT constituents)**, **Wall Street consensus estimates & price targets**, a **40+ factor point-in-time stock screener**, **734 crypto pairs**, **42 FX currencies**, **hourly & 5-minute intraday bars**, **multi-asset USD correlation & drawdown analytics**, and **live U.S. Treasury / TIPS / FRED macroeconomic curves**—in one zero-dependency ESM client (`fetch`-native on Node 20+, Bun, Deno, Cloudflare Workers, and Vercel Edge).
 
 Works **immediately out of the box with zero signup** on benchmark US, London, Tokyo, India, ETF, index, macro, and crypto symbols (`mw_demo`).
 
-**[Live Playground](https://quantset.dev/docs/api)** · **[60-Second Quickstart](https://quantset.dev/docs/quickstart)** · **[1-Line FMP Migration](https://quantset.dev/docs/switch/fmp)** · **[MCP Server (`@quantset/mcp`)](https://www.npmjs.com/package/@quantset/mcp)** · **[7 Buyside Agent Skills](https://github.com/quantset/skills)**
+**[Live Playground](https://quantset.dev/docs/api)** · **[60-Second Quickstart](https://quantset.dev/docs/quickstart)** · **[SEC EDGAR XBRL Guide](https://quantset.dev/docs/guides/sec-edgar-xbrl-api)** · **[MCP Server (`@quantset/mcp`)](https://www.npmjs.com/package/@quantset/mcp)** · **[7 Buyside Agent Skills](https://github.com/quantset/skills)**
 
 ---
 
@@ -114,7 +114,6 @@ for await (const page of qs.paginate("screener", { min_roic: 20, max_pe_ttm: 30,
 - **ETF Holdings (4,899 Funds) & U.S. Treasury Yield Curve API:** [https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api](https://quantset.dev/docs/guides/etf-holdings-treasury-yield-api)
 - **Adjusted Close, Splits & Dividends Verification:** [https://quantset.dev/docs/guides/adjusted-close-splits-api](https://quantset.dev/docs/guides/adjusted-close-splits-api)
 - **Global Stock Data API (67 Countries):** [https://quantset.dev/docs/global-markets](https://quantset.dev/docs/global-markets)
-- **Switch from `yfinance` / Yahoo Finance:** [https://quantset.dev/docs/switch/yfinance](https://quantset.dev/docs/switch/yfinance)
-- **Switch from Financial Modeling Prep (FMP):** [https://quantset.dev/docs/switch/fmp](https://quantset.dev/docs/switch/fmp)
+- **Data Verification & Provenance Methodology:** [https://quantset.dev/docs/data-quality](https://quantset.dev/docs/data-quality)
 - **7 Buyside Skills for Claude Code & Cursor:** [https://github.com/quantset/skills](https://github.com/quantset/skills)
 - **Full LLM Contract (`llms-full.txt`):** [https://api.quantset.dev/llms-full.txt](https://api.quantset.dev/llms-full.txt)

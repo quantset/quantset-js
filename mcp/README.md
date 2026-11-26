@@ -1,6 +1,6 @@
 # `@quantset/mcp` — Turn Claude, Cursor & Codex Into an AI Hedge Fund & SEC Research Desk
 
-**Stop letting your AI assistant hallucinate balance sheets from Google Search or crash on broken `yfinance` scrapers.**
+**Give your AI assistant direct access to primary-source SEC EDGAR XBRL filings, 67 global equity markets, 4,899 ETF look-throughs, Wall Street consensus estimates, and live U.S. Treasury curves.**
 
 **[QuantSet](https://quantset.dev)** turns **Claude Desktop**, **Claude Code**, **Cursor**, **Windsurf**, **VS Code**, **OpenClaw**, and **ChatGPT / Codex** into a live institutional equity research & quantitative analytics desk: **90,000+ global stocks across 67 countries** (64 years of survivorship-checked US history back to **1962**; S&P 500 to **1927**), **127M+ reconciled SEC EDGAR XBRL facts (`10-K`, discrete quarterly `10-Q`, `Form 13F`, `Form 4` w/ Rule 10b5-1 insider flags, segments & debt walls)**, **4,899 ETF look-through holdings (`175k+` N-PORT constituents)**, **Wall Street consensus estimates & price targets**, a **40+ factor point-in-time stock screener**, **734 crypto pairs**, **42 FX currencies**, and **live U.S. Treasury / TIPS / FRED macroeconomic curves**.
 

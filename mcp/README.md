@@ -41,6 +41,14 @@ Or in `claude_desktop_config.json` / `.cursor/mcp.json`:
 
 In **Claude.ai** or **ChatGPT** web connectors, add `https://api.quantset.dev/mcp` and connect via 1-click OAuth 2.1.
 
+### Free to try right now (`mw_demo`)
+The default key `mw_demo` works immediately with **no signup** across 9 sample listings (`us:NVDA`, `us:AAPL`, `us:MSFT`, `us:IVV`, `global:SHEL.L`, `global:1301.T`, `global:RELIANCE.NS`, `crypto:BTCUSDT`, `index:SPX`). Try asking your agent:
+- *"Using QuantSet, what is NVIDIA worth based on its trailing free cash flow and current 10-year Treasury yield?"*
+- *"Using QuantSet, compare NVIDIA's and Apple's revenue and operating margin over the last four fiscal years."*
+- *"Using QuantSet, which ETFs have the largest portfolio weight in NVDA?"*
+
+When you want to query any other listing across all 67 markets, run `npx quantset init` or sign in at **[quantset.dev/signup](https://quantset.dev/signup)** to claim a personal key with free trial credits.
+
 ---
 
 ## Checked Before It Reaches Your Agent

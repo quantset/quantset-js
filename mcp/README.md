@@ -1,29 +1,67 @@
-# `@quantset/mcp` — Put the Global Stock Market Inside Claude, Cursor & Codex
+# QuantSet MCP
 
-**`90,000+` symbols** and **`52,000+` stocks across `67` countries** (US daily history back to **1962**; S&P 500 to **1927**), **`734` crypto pairs**, **`42` FX currencies**, **`36,000+` companies with standardized financial statements**, **`127M+` facts from SEC filings back to 2000**, **`4,899` ETFs you can look through (`175,000+` fund holdings mapped to tickers)**, Wall Street consensus estimates, 40-factor stock screening, and U.S. Treasury/FRED macro curves—in one MCP server for **Claude, Claude Code, Cursor, ChatGPT, Codex, Windsurf, VS Code, Hermes, and OpenClaw**.
+Put the global stock market inside Claude, Cursor and Codex.
 
-An agent is only as good as the numbers it reads. Give yours every market, every filing, and every fund—checked before it ships.
+| | |
+| --- | --- |
+| **90,000+** | symbols covered |
+| **67** | countries in one schema |
+| **36,000+** | companies with financial statements |
+| **127M+** | facts from SEC filings since 2000 |
+| **4,899** | ETFs you can look through |
+| **175,000+** | fund holdings mapped to tickers |
+| **42** | currencies with dated FX rates |
 
----
+**Free to start: 250 credits, no card.** [Get a key](https://quantset.dev/signup)
 
-## 1. Fastest Setup — One Command
+## Quickstart
 
 ```sh
 npx quantset init
-npx skills add quantset/skills
 ```
 
-- **`npx quantset init`** approves your computer in the browser, configures the QuantSet MCP server in the AI tools it finds, saves `QUANTSET_API_KEY` to `.env`, and verifies a first call.
-- **`npx skills add quantset/skills`** installs the 7 research skills (`dcf-valuation`, `comps-analysis`, `investment-memo`, `earnings-playbook`, `forensic-red-flags`, `portfolio-xray`, `quantset`).
-
-## 2. Remote Streamable HTTP or Local Stdio (`npx`)
+Or try it right now with no signup:
 
 ```sh
 claude mcp add --transport http quantset https://api.quantset.dev/mcp \
   --header "Authorization: Bearer mw_demo"
 ```
 
-Or in `claude_desktop_config.json` / `.cursor/mcp.json`:
+Add the seven research skills (DCF, comps, memos, earnings, forensics, portfolio x-ray):
+
+```sh
+npx skills add quantset/skills
+```
+
+## Ask the questions one lookup can't answer
+
+- "Which fast-growing companies are still cheap?"
+- "How much of my portfolio is secretly one stock? I hold IVV, QQQ and SMH."
+- "Which carmaker is cheapest once you put them in one currency?"
+- "Which companies are growing revenue 20%+ with 15%+ free cash flow margins and still trade under 15x EV/FCF?"
+- "Are Nvidia insiders selling into the rally, and is it on a pre-arranged 10b5-1 plan?"
+- "Who is buying back the most stock while trading at the cheapest multiples?"
+- "Where in the AI supply chain is free cash flow growing fastest?"
+
+## What you get
+
+- **Prices:** daily and intraday across 67 countries, plus crypto and FX
+- **Financials:** income, balance sheet and cash flow for 36,000+ companies
+- **SEC filings:** 127M+ facts back to 2000, insider trades and 13F holdings, each linked to its source
+- **ETFs:** look through 4,899 funds to 175,000+ holdings
+- **Estimates:** consensus EPS and revenue, with earnings surprises
+- **Screener:** 40+ factors
+- **Macro:** Treasury curves, CPI and FRED series
+
+## Built for agents
+
+- Every figure links to the filing it came from
+- Missing data returns `null`, never a fake `0`
+- Snapshots stay fixed across multi-page reads
+
+## Manual setup
+
+In `claude_desktop_config.json` or `.cursor/mcp.json`:
 
 ```json
 {
@@ -39,29 +77,9 @@ Or in `claude_desktop_config.json` / `.cursor/mcp.json`:
 }
 ```
 
-In **Claude.ai** or **ChatGPT** web connectors, add `https://api.quantset.dev/mcp` and connect via 1-click OAuth 2.1.
+In **Claude.ai** or **ChatGPT** web connectors, add `https://api.quantset.dev/mcp` and connect with OAuth.
 
-### Free to try right now (`mw_demo`)
-The default key `mw_demo` works immediately with **no signup** across 9 sample listings (`us:NVDA`, `us:AAPL`, `us:MSFT`, `us:IVV`, `global:SHEL.L`, `global:1301.T`, `global:RELIANCE.NS`, `crypto:BTCUSDT`, `index:SPX`). Try asking your agent:
-- *"Using QuantSet, what is NVIDIA worth based on its trailing free cash flow and current 10-year Treasury yield?"*
-- *"Using QuantSet, compare NVIDIA's and Apple's revenue and operating margin over the last four fiscal years."*
-- *"Using QuantSet, which ETFs have the largest portfolio weight in NVDA?"*
-
-When you want to query any other listing across all 67 markets, run `npx quantset init` or sign in at **[quantset.dev/signup](https://quantset.dev/signup)** to get **250 free credits** (~10 full DCF valuations or 250 stock/price reads) with no credit card required.
-
----
-
-## Checked Before It Reaches Your Agent
-
-1. **Filings you can cite:** US statements reconcile to SEC XBRL filings and carry `form`, `accession`, `available_at` (public filing date), and a `citation_url` highlighting the exact sentence on `sec.gov`.
-2. **Null means null, never zero:** When a company does not report a line, you get `null`—never a silent `0` that bends a margin or an average.
-3. **Adjustments with evidence:** Adjusted closes pass a three-way check against raw closes, split continuity, and verified cash dividends (`status: "evidence-verified"`).
-4. **True quarters and native units:** Quarterly cash flows are separated from fiscal year-to-date figures (`period_basis: "discrete_quarter"`), and every price states its currency, pence (`GBp`) included.
-5. **Snapshots that hold still:** Every response is pinned to `X-Warehouse-Snapshot-Id` so multi-page reads never shift mid-conversation.
-
----
-
-## Read-Only Tools Included
+## Tools Included
 
 | Tool | What Your Agent Reads |
 | --- | --- |

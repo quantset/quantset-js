@@ -248,3 +248,6 @@ export class Quantset {
   treasury_yields(params: Query = {}) { return this.page<TreasuryYieldCurvePoint>("macro/treasury-yields", params); }
   fx(params: Query = {}) { return this.page<FxRate>("fx/rates", params); }
 }
+
+export { createQuantsetTools, type QuantsetToolSpec } from "./tools.js";
+

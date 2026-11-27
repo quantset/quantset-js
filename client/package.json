@@ -1,10 +1,13 @@
 {
   "name": "quantset",
-  "version": "0.1.7",
-  "description": "Free to try (mw_demo + 250 free credits). 90,000+ symbols & 52,000+ stocks across 67 countries, 734 crypto pairs, 42 FX currencies, 36,000+ companies with financial statements, 127M+ SEC filing facts, 4,899 ETFs you can look through, consensus estimates & 40-factor screening.",
+  "version": "0.1.8",
+  "description": "Stock market data for your agents and code, with one-command MCP setup for Claude, Cursor and Codex (npx quantset init). 90,000+ symbols and 52,000+ stocks across 67 countries, 734 crypto pairs, 42 currencies, financials for 36,000+ companies, 127M+ SEC filing facts, 4,899 ETFs you can look through, analyst estimates and a 40-factor screener. Typed TypeScript client + Vercel AI SDK / Mastra tools. 250 free credits on signup, no card.",
   "license": "MIT",
   "type": "module",
-  "exports": {".": {"types": "./dist/index.d.ts", "import": "./dist/index.js"}},
+  "exports": {
+    ".": {"types": "./dist/index.d.ts", "import": "./dist/index.js"},
+    "./tools": {"types": "./dist/tools.d.ts", "import": "./dist/tools.js"}
+  },
   "bin": {"quantset": "cli.js"},
   "files": ["dist", "cli.js"],
   "scripts": {"build": "tsc -p tsconfig.json", "prepack": "npm run build"},

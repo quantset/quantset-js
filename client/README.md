@@ -1,8 +1,28 @@
-# QuantSet for TypeScript & JavaScript — Put the Global Stock Market Inside Your Agents and Code
+# QuantSet for TypeScript and JavaScript
 
-**`90,000+` symbols** and **`52,000+` stocks across `67` countries** (US daily history back to **1962**; S&P 500 to **1927**), **`734` crypto pairs**, **`42` FX currencies**, **`36,000+` companies with standardized financial statements**, **`127M+` facts from SEC filings back to 2000**, **`4,899` ETFs you can look through (`175,000+` fund holdings mapped to tickers)**, consensus estimates, 40-factor stock screening, and U.S. Treasury/FRED macro curves—in one zero-dependency ESM client (`fetch`-native on Node 20+, Bun, Deno, Cloudflare Workers, and Vercel Edge) plus a one-command setup CLI (`npx quantset init`).
+Put the global stock market inside your agents and code.
 
-Works **immediately out of the box with zero signup** on sample US, London, Tokyo, Mumbai, ETF, index, macro, and crypto listings (`mw_demo`), and includes **250 free credits** across the full 90,000+ symbol warehouse when you run `npx quantset init` or claim a key at **[quantset.dev/signup](https://quantset.dev/signup)** (no credit card required).
+| | |
+| --- | --- |
+| **90,000+** | symbols covered |
+| **67** | countries in one schema |
+| **36,000+** | companies with financial statements |
+| **127M+** | facts from SEC filings since 2000 |
+| **4,899** | ETFs you can look through |
+| **175,000+** | fund holdings mapped to tickers |
+| **42** | currencies with dated FX rates |
+
+**Free to start: 250 credits on signup, no card.** Sample tickers work with no key.
+
+## Questions it can answer
+
+- "Which fast-growing companies are still cheap?"
+- "How much of my portfolio is secretly one stock? I hold IVV, QQQ and SMH."
+- "Which carmaker is cheapest once you put them in one currency?"
+- "Which companies are growing revenue 20%+ with 15%+ free cash flow margins and still trade under 15x EV/FCF?"
+- "Are Nvidia insiders selling into the rally, and is it on a pre-arranged 10b5-1 plan?"
+- "Who is buying back the most stock while trading at the cheapest multiples?"
+- "Where in the AI supply chain is free cash flow growing fastest?"
 
 **[Live API Reference](https://quantset.dev/docs/api)** · **[Quickstart](https://quantset.dev/docs/quickstart)** · **[How We Verify Data](https://quantset.dev/docs/data-quality)** · **[MCP Server (`@quantset/mcp`)](https://www.npmjs.com/package/@quantset/mcp)** · **[7 Research Skills](https://github.com/quantset/skills)**
 
@@ -89,6 +109,17 @@ for await (const page of qs.paginate("screener", { min_roic: 20, max_pe_ttm: 30,
 | **4,899 ETFs & Corporate Actions** | `etf_holdings`, `get("etf-profile", { ticker: "IVV" })`, `get("etf-exposures", { ticker: "NVDA" })`, `corporate_actions` |
 | **Macro, Treasury Curves & FX** | `treasury_yields`, `macro_series`, `macro`, `fx` |
 | **SEC Filings, Segments & Ownership** | `income`, `balance_sheet`, `cash_flow`, `sec_facts`, `get("segments", { ticker: "NVDA" })`, `get("debt-maturities", { ticker: "NVDA" })`, `get("insider-activity", { ticker: "NVDA" })`, `get("institutional-ownership", { ticker: "NVDA" })` |
+
+## Vercel AI SDK, Mastra & LangChain.js Tools (`quantset/tools`)
+
+Pass `createQuantsetTools()` directly into the **Vercel AI SDK** (`generateText` / `streamText`), **Mastra**, or **OpenAI Agents JS** with zero extra wrapper dependencies:
+
+```ts
+import { createQuantsetTools } from "quantset/tools";
+
+const tools = createQuantsetTools();
+// Includes: quantset_quotes, quantset_financial_statements, quantset_etf_lookthrough, quantset_screen_stocks
+```
 
 ## Links
 

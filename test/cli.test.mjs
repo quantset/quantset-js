@@ -92,7 +92,7 @@ test("with nowhere to put the key, init shows it once", async () => {
   const home = mkdtempSync(join(tmpdir(), "qs-bare-"));
   try {
     const result = await run(["init", "--yes", "--no-open", "--site", site], { env: { ...process.env, HOME: home, USERPROFILE: home, PATH: EMPTY_PATH, NO_COLOR: "1" }, cwd: home });
-    assert.equal(result.code, 0, result.out);
+    assert.equal(result.code, 1, result.out);
     assert.match(result.out, /No AI tools found/);
     assert.match(result.out, /not a project/);
     assert.match(result.out, /first call did not come back \(HTTP 503\)/);

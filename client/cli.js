@@ -2,8 +2,7 @@
 // quantset init: connect this computer and its AI tools to QuantSet with one command.
 //
 // It opens a page for you to approve, collects a key made for this computer, adds the QuantSet
-// MCP server to the AI tools it finds, saves the key for your code, and makes a first call so you
-// see a real answer before it exits. No key is typed or pasted on the way. No dependencies.
+// MCP server to supported clients, saves the key for your code, and checks the key with a REST read.
 
 import { execFile, spawn } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -131,19 +130,16 @@ function clients(key, mcpUrl) {
       add: () => run("code", ["--add-mcp", JSON.stringify({ name: "quantset", type: "http", url: mcpUrl, headers: bearer })]),
     },
     {
-      name: "Windsurf",
-      found: () => existsSync(join(home, ".codeium", "windsurf")),
-      add: async () => mergeJson(join(home, ".codeium", "windsurf", "mcp_config.json"), ["mcpServers", "quantset"], { serverUrl: mcpUrl, headers: bearer }),
-    },
-    {
       name: "Gemini CLI",
       found: () => onPath("gemini"),
+      note: "In a folder you trust, confirm workspace trust in Gemini if prompted, then run gemini mcp list.",
       add: () => run("gemini", ["mcp", "add", "--transport", "http", "--scope", "user", "quantset", mcpUrl, "--header", `Authorization: Bearer ${key}`]),
     },
     {
       name: "Codex",
       found: () => onPath("codex"),
-      note: "Codex reads the key from QUANTSET_API_KEY. Add it to your shell profile, or run Codex from a folder with the .env below.",
+      needsEnv: true,
+      note: "Export QUANTSET_API_KEY in the terminal that launches Codex. codex mcp get quantset shows the saved configuration.",
       add: () => run("codex", ["mcp", "add", "quantset", "--url", mcpUrl, "--bearer-token-env-var", "QUANTSET_API_KEY"]),
     },
   ];
@@ -206,12 +202,15 @@ async function init() {
     for (const client of found) {
       const result = await client.add();
       if (result.ok) {
-        ok(client.name);
+        ok(`${client.name} configured`);
         added.push(client);
         if (client.note) say(dim(`     ${client.note}`));
-      } else bad(`${client.name}: ${result.text.split("\n")[0] || "could not be added"}`);
+      } else bad(`${client.name}: ${result.text.replaceAll(key, "[redacted]").split("\n")[0] || "could not be added"}`);
     }
   } else skip("Left your AI tools as they are");
+  if (existsSync(join(homedir(), ".codeium", "windsurf"))) {
+    say(dim(`   Windsurf uses manual setup: ${SITE}/docs/agents#windsurf`));
+  }
 
   step(3, "Save the key for your code");
   const project = [".git", "package.json", "pyproject.toml", "requirements.txt", "go.mod", "Cargo.toml"].some((name) => existsSync(join(process.cwd(), name)));
@@ -224,18 +223,23 @@ async function init() {
     ok(".env updated" + (ignored ? ", and .env added to .gitignore" : ""));
   } else skip("Not saved");
 
-  step(4, "Make a first call");
+  step(4, "Verify the key with a REST request");
   const first = await call(`${grant.base}/api/v1/quotes?tickers=us:NVDA`, { headers: { "X-API-Key": key } });
   const quote = first.status === 200 && Array.isArray(first.data.data) ? first.data.data[0] : null;
   if (quote && quote.close != null) ok(`NVIDIA closed at $${Number(quote.close).toFixed(2)} on ${quote.date}`);
-  else bad(`The first call did not come back (HTTP ${first.status}). Your key is fine. Try again in a minute.`);
+  else {
+    bad(`The first call did not come back (HTTP ${first.status}). Check the key and API response before retrying.`);
+    process.exitCode = 1;
+  }
 
   say("");
-  say(bold("You are set up."));
-  if (added.length) say(`Open a new chat in ${added[0].name} and ask: ${amber('"Using QuantSet, compare NVIDIA’s and Apple’s revenue growth over the last four fiscal years."')}`);
+  if (added.some((client) => client.needsEnv) && saved) {
+    say("For Codex, export QUANTSET_API_KEY from the .env value before starting the client.");
+  }
+  if (added.length) say(`To verify MCP in your client, open a new chat and ask: ${amber('"Using QuantSet, what was NVIDIA’s latest close and on what date?"')}`);
   if (grant.trial_credits_remaining > 0) say(`You have ${grant.trial_credits_remaining} free credits. They work on every covered listing.`);
   say(`Usage, keys and plans: ${grant.console_url}`);
-  if (flag("--print-key") || (!added.length && !saved)) {
+  if (flag("--print-key") || (!saved && added.every((client) => client.needsEnv))) {
     say("");
     say(`Your key, shown once: ${bold(key)}`);
     say(dim("Keep it out of source control. You can revoke it in the console at any time."));

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import { Quantset, QuantsetError } from "quantset";
 
@@ -50,6 +51,8 @@ test("price requests read one page and a page budget retains the continuation", 
   await client.prices("IBM", { start: "1962-01-01" });
   assert.equal(fetch.mock.callCount(), 1);
   assert.equal(fetch.mock.calls[0].arguments[0].searchParams.get("limit"), null);
+  const released = JSON.parse(readFileSync(new URL("../client/package.json", import.meta.url), "utf8")).version;
+  assert.equal(fetch.mock.calls[0].arguments[1].headers.get("User-Agent"), "quantset-js/" + released);
   assert.equal((await client.prices("IBM", { limit: 2 })).next_cursor, "older");
   assert.equal((await client.priceHistory("IBM", { limit: 2, maxPages: 1 })).next_cursor, "older");
   assert.equal(fetch.mock.callCount(), 3);

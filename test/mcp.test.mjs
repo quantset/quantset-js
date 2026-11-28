@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { once } from "node:events";
 import { fileURLToPath } from "node:url";
@@ -57,5 +58,7 @@ test("stdio launcher negotiates MCP and forwards tools, credentials and errors",
   assert.equal(ambiguity.structuredContent.code, "ambiguous_instrument");
   assert.deepEqual(ambiguity.structuredContent.candidates, ["us:BTC", "crypto:BTCUSDT"]);
   assert.ok(requests.every(r => r.headers.authorization === "Bearer demo-test"));
+  const released = JSON.parse(readFileSync(new URL("../mcp/package.json", import.meta.url), "utf8")).version;
+  assert.ok(requests.every(r => r.headers["user-agent"] === `quantset-mcp/${released} node/${process.versions.node} host/consumer`));
   assert.equal(requests.find(r => r.rpc.method === "tools/list").headers["mcp-protocol-version"], version);
 });

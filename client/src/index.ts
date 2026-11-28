@@ -7,6 +7,9 @@ import type {
 export type * from "./models.js";
 export type { InstrumentSnapshot as Snapshot } from "./models.js";
 
+// Sent with every request so QuantSet can tell which client and version made it. Equal to the version in package.json.
+const AGENT = "quantset-js/0.1.9";
+
 export interface CreditReceipt {
   credit_cost: number | null;
   credits_remaining: number | null;
@@ -133,7 +136,7 @@ export class Quantset {
     for (const [key, value] of Object.entries(params)) {
       if (value !== undefined) url.searchParams.set(key, Array.isArray(value) ? value.join(",") : String(value));
     }
-    const headers = new Headers({ "X-API-Key": this.apiKey });
+    const headers = new Headers({ "X-API-Key": this.apiKey, "User-Agent": AGENT });
     const cap = creditLimit(options.maxCredits);
     if (cap !== undefined || this.maxCreditsPerRequest !== undefined) {
       headers.set("X-Max-Credits", String(Math.min(cap ?? Infinity, this.maxCreditsPerRequest ?? Infinity)));
